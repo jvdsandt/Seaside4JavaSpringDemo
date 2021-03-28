@@ -19,4 +19,5 @@ public class HtmlScriptElement extends HtmlElement {
 	 public String tag() {
 	 	 return "script";
 	 }
+
 }

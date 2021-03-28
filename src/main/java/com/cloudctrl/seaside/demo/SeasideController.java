@@ -19,7 +19,7 @@ public class SeasideController {
 	 @GetMapping("/products")
 	 public void getProducts(HttpServletResponse response) throws IOException {
 
-		  var panel = new ProductListPanel(model.getProducts());
+		  var panel = new DemoPage(new ProductListPanel(model.getProducts()));
 
 		  HtmlCanvas.builder()
 					 .setFullDocument(true)
@@ -41,7 +41,7 @@ public class SeasideController {
 				handleNotFound(response);
 				return;
 		  }
-		  var panel = new ProductDetailsPanel(product.get());
+		  var panel = new DemoPage(new ProductDetailsPanel(product.get()));
 		  HtmlCanvas.builder()
 					 .setFullDocument(true)
 					 .setRootBlock(root -> root.setTitle("Hello"))

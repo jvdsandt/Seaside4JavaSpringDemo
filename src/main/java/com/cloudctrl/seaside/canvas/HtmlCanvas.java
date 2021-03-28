@@ -130,4 +130,15 @@ public class HtmlCanvas extends Canvas {
 	 public void tableRow(Runnable action) {
 	 	 tableRow().with(action);
 	 }
+
+	 public ScriptTag script() {
+	 	ScriptTag tag = new ScriptTag();
+	 	setBrush(tag);
+	 	return tag;
+	 }
+
+	 public void html(String markup) {
+	 	flush();
+	 	getDocument().write(markup);
+	 }
 }

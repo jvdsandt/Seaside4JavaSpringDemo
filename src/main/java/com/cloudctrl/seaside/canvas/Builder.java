@@ -24,6 +24,7 @@ public class Builder {
 		  HtmlCanvas renderer = new HtmlCanvas(doc);
 		  openDocument(doc);
 		  renderer.render(anObject);
+		  renderer.flush();
 		  closeDocument(doc);
 	 }
 

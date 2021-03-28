@@ -4,7 +4,7 @@ import com.cloudctrl.seaside.canvas.Canvas;
 import com.cloudctrl.seaside.document.Document;
 import com.cloudctrl.seaside.document.HtmlAttributes;
 
-public abstract class TagBrush {
+public abstract class TagBrush<T extends TagBrush<T>> {
 
 	 private Canvas canvas;
 	 private TagBrush parent;
@@ -21,6 +21,10 @@ public abstract class TagBrush {
 	 	 	 with(null);
 		 }
 	 }
+
+	public void with(Runnable anObject) {
+		with((Object) anObject);
+	}
 
 	 public void with(Object anObject) {
 	 	 openTag();
@@ -47,6 +51,11 @@ public abstract class TagBrush {
 		getDocument().closeTag(getTag());
 	 }
 
+	 @SuppressWarnings("unchecked")
+	 final T self() {
+		 return (T) this;
+	 }
+
 	 public boolean isClosed() {
 	 	 return closed;
 	 }
@@ -64,6 +73,10 @@ public abstract class TagBrush {
 	 	 return attributes;
 	 }
 
+	public void attributePut(String name, String value) {
+		getAttributes().put(name, value);
+	}
+
 	 public Canvas getCanvas() {
 		  return canvas;
 	 }
@@ -72,11 +85,13 @@ public abstract class TagBrush {
 		  return parent;
 	 }
 
-	 public void cssClass(String aString) {
+	 public T cssClass(String aString) {
 		getAttributes().addClass(aString);
+		return self();
 	 }
 
-	 public void style(String aString) {
+	 public T style(String aString) {
 		  getAttributes().addStyle(aString);
+		  return self();
 	 }
 }
