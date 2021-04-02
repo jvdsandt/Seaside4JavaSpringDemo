@@ -1,5 +1,6 @@
 package com.cloudctrl.seaside.demo;
 
+import com.cloudctrl.seaside.bootstrap.BootstrapNavbar;
 import com.cloudctrl.seaside.canvas.HtmlCanvas;
 import com.cloudctrl.seaside.component.HtmlRenderable;
 
@@ -13,6 +14,8 @@ public class DemoPage implements HtmlRenderable {
 
     @Override
     public void renderContentOn(HtmlCanvas html) {
+
+        html.render(new BootstrapNavbar());
 
         html.div().cssClass("container").with(() -> {
             html.div().cssClass("row").with(() -> {

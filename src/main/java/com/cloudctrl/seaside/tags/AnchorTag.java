@@ -1,6 +1,6 @@
 package com.cloudctrl.seaside.tags;
 
-public class AnchorTag extends TagBrush {
+public class AnchorTag extends TagBrush<AnchorTag> {
 
 	 @Override
 	 public String getTag() {

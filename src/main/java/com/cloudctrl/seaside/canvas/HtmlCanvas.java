@@ -131,10 +131,26 @@ public class HtmlCanvas extends Canvas {
 	 	 tableRow().with(action);
 	 }
 
+	 public GenericTag span() { return tag("span"); }
+
+	 public GenericTag unorderedList() {
+	 	 return tag("ul");
+	 }
+
+	 public void span(Object anObject) {
+	 	 span().with(anObject);
+	 }
+
 	 public ScriptTag script() {
 	 	ScriptTag tag = new ScriptTag();
 	 	setBrush(tag);
 	 	return tag;
+	 }
+
+	 public ButtonTag button() {
+	 	 ButtonTag tag = new ButtonTag();
+	 	 setBrush(tag);
+	 	 return tag;
 	 }
 
 	 public void html(String markup) {
