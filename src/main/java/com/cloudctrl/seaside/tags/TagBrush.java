@@ -73,9 +73,17 @@ public abstract class TagBrush<T extends TagBrush<T>> {
 	 	 return attributes;
 	 }
 
-	public void attributePut(String name, String value) {
+	public T attributePut(String name, Object value) {
 		getAttributes().put(name, value);
+		return self();
 	}
+
+	 public T attributePutIf(String name, Object value, boolean doInclude) {
+	 	 if (doInclude) {
+			  getAttributes().put(name, value);
+		 }
+	 	 return self();
+	 }
 
 	 public Canvas getCanvas() {
 		  return canvas;
@@ -88,6 +96,13 @@ public abstract class TagBrush<T extends TagBrush<T>> {
 	 public T cssClass(String aString) {
 		getAttributes().addClass(aString);
 		return self();
+	 }
+
+	 public T cssClass(String aString, boolean doInclude) {
+	 	 if (doInclude) {
+			  getAttributes().addClass(aString);
+		 }
+	 	 return self();
 	 }
 
 	 public T style(String aString) {

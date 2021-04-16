@@ -1,21 +1,34 @@
 package com.cloudctrl.seaside.demo;
 
 import com.cloudctrl.seaside.bootstrap.BootstrapNavbar;
+import com.cloudctrl.seaside.bootstrap.MenuItem;
 import com.cloudctrl.seaside.canvas.HtmlCanvas;
 import com.cloudctrl.seaside.component.HtmlRenderable;
 
+import java.awt.*;
+import java.util.Arrays;
+
 public class DemoPage implements HtmlRenderable {
 
+    private BootstrapNavbar navbar;
     private HtmlRenderable mainPanel;
 
     public DemoPage(HtmlRenderable mainPanel) {
+        super();
+        this.navbar = new BootstrapNavbar();
+        this.navbar.setBrandName("Seaside");
+        this.navbar.setMenuItems(Arrays.asList(
+                new MenuItem("First"),
+                new MenuItem("Seconds"),
+                new MenuItem("Third")
+        ));
         this.mainPanel = mainPanel;
     }
 
     @Override
     public void renderContentOn(HtmlCanvas html) {
 
-        html.render(new BootstrapNavbar());
+        html.render(navbar);
 
         html.div().cssClass("container").with(() -> {
             html.div().cssClass("row").with(() -> {

@@ -141,6 +141,14 @@ public class HtmlCanvas extends Canvas {
 	 	 span().with(anObject);
 	 }
 
+	 public GenericTag form() { return tag("form"); }
+
+	 public TextInputTag textInput() {
+	 	 TextInputTag tag = new TextInputTag();
+	 	 setBrush(tag);
+	 	 return tag;
+	 }
+
 	 public ScriptTag script() {
 	 	ScriptTag tag = new ScriptTag();
 	 	setBrush(tag);
