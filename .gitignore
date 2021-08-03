@@ -1,3 +1,6 @@
 /.idea/
 /Seaside4JavaSpringDemo.iml
 /target/
+/.settings/
+/.classpath
+/.project
