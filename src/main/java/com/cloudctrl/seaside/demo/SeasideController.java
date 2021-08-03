@@ -1,66 +1,36 @@
 package com.cloudctrl.seaside.demo;
 
-import com.cloudctrl.seaside.canvas.HtmlCanvas;
-import com.cloudctrl.seaside.document.HtmlRoot;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-@Controller
+@RestController
 public class SeasideController {
 
-	 @Autowired
-	 private DemoModel model;
+	@Autowired
+	private DemoModel model;
 
-	 @GetMapping("/products")
-	 public void getProducts(HttpServletResponse response) throws IOException {
+	@GetMapping("/")
+	public DemoPage getHome() throws IOException {
+		return new DemoPage(null);
+	}
 
-		  var panel = new DemoPage(new ProductListPanel(model.getProducts()));
+	@GetMapping("/products")
+	public DemoPage getProducts() throws IOException {
+		return new DemoPage(new ProductListPanel(model.getProducts()));
+	}
 
-		  HtmlCanvas.builder()
-					 .setFullDocument(true)
-					 .setRootBlock(root -> {
-					 	 root.setTitle("Hello");
-					 	 updateRoot(root);
-					 })
-					 .render(panel, response.getWriter());
-	 }
-
-	 @GetMapping("/product/{id}")
-	 public void getProduct(@PathVariable String id, HttpServletResponse response) throws IOException {
-
-		  var product = model.getProducts().stream()
-					 .filter(p -> p.getName().equals(id))
-					 .findAny();
-
-		  if (product.isEmpty()) {
-				handleNotFound(response);
-				return;
-		  }
-		  var panel = new DemoPage(new ProductDetailsPanel(product.get()));
-		  HtmlCanvas.builder()
-					 .setFullDocument(true)
-					 .setRootBlock(root -> root.setTitle("Hello"))
-					 .render(panel, response.getWriter());
-	 }
-
-	 private void handleNotFound(HttpServletResponse response) {
-	 	 response.setStatus(404);
-	 }
-
-	 private void updateRoot(HtmlRoot root) {
-	 	 root.setLang("en");
-	 	 root.meta().chatSet("utf-8");
-	 	 root.meta().setName("viewport").setContent("width=device-width, initial-scale=1");
-
-	 	 root.stylesheet()
-					.setUrl("https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css")
-					.setIntegrity("sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6")
-					.beAnonymous();
-	 }
-
+	@GetMapping("/product/{id}")
+	public DemoPage getProduct(@PathVariable String id) throws IOException {
+		var product = model.getProduct(id);
+		if (product.isEmpty()) {
+			return null;
+		}
+		return new DemoPage(new ProductDetailsPanel(product.get()));
+	}
 }

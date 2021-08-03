@@ -24,7 +24,9 @@ public class HtmlCanvas extends Canvas {
 
 	 public void render(HtmlRenderable anObject) {
 	 	 flush();
-	 	 anObject.renderContentOn(this);
+	 	 if  (anObject != null) {
+			 anObject.renderContentOn(this);
+		 }
 	 }
 
 	 public GenericTag tag(String tagName) {
