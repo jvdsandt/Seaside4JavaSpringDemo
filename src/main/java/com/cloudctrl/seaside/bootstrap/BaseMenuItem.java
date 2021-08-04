@@ -5,6 +5,7 @@ import com.cloudctrl.seaside.canvas.HtmlCanvas;
 public abstract class BaseMenuItem {
 
 	 private String label;
+	 private String href;
 	 private boolean disabled;
 	 private boolean active;
 
@@ -19,7 +20,16 @@ public abstract class BaseMenuItem {
 		  return this;
 	 }
 
-	 public boolean isDisabled() {
+	 public String getHref() {
+		return href;
+	}
+
+	public BaseMenuItem setHref(String href) {
+		this.href = href;
+		return this;
+	}
+
+	public boolean isDisabled() {
 		  return disabled;
 	 }
 

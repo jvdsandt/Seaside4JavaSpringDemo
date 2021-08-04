@@ -8,6 +8,8 @@ import java.util.List;
 public class BootstrapNavbar implements HtmlRenderable {
 
 	 private String brandName = "Nav";
+	 private String brandHref = "/";
+
 	 private String searchPlaceholder = "Search";
 
 	 private List<BaseMenuItem> menuItems;
@@ -31,7 +33,7 @@ public class BootstrapNavbar implements HtmlRenderable {
 	 private void renderBrand(HtmlCanvas html) {
 		  html.anchor()
 					 .cssClass("navbar-brand")
-					 .setHref("#")
+					 .setHref(brandHref)
 					 .with(brandName);
 	 }
 
@@ -48,7 +50,7 @@ public class BootstrapNavbar implements HtmlRenderable {
 					.cssClass("nav-item")
 					.with(() -> {
 						 html.anchor()
-									.setHref("#")
+									.setHref(item.getHref())
 									.cssClass("nav-link")
 									.cssClass("active", item.isActive())
 									.cssClass("disabled", item.isDisabled())
@@ -80,7 +82,12 @@ public class BootstrapNavbar implements HtmlRenderable {
 		  return this;
 	 }
 
-	 public String getSearchPlaceholder() {
+	 public BootstrapNavbar setBrandHref(String brandHref) {
+		this.brandHref = brandHref;
+		return this;
+	}
+
+	public String getSearchPlaceholder() {
 		  return searchPlaceholder;
 	 }
 

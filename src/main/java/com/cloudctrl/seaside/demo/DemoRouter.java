@@ -1,60 +1,29 @@
 package com.cloudctrl.seaside.demo;
 
-import java.io.IOException;
-import java.util.function.Function;
+import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.on;
 
-import com.cloudctrl.seaside.component.HtmlRenderable;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
 
 public class DemoRouter {
 
 	public static UriComponents home() {
-		try {
-			MvcUriComponentsBuilder.fromMethod(MvcUriComponentsBuilder.on(SeasideController.class).getHome())
-					.build();
-		} catch (IOException ex) {
-			throw new RuntimeException(ex);
-		}
+		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).getHome())
+				.build();
 	}
 
-	private static final Route HOME = new Route("/",
-			(input) -> new DemoPage(null)
-	);
-
-	private static final Route PRODUCTS = new Route("/products",
-			(input) -> new DemoPage(null)
-	);
-
-	private static final Route PRODUCT_DETAILS = new Route("/product/{id}",
-			(input) -> new DemoPage(null)
-	);
-
-	public Route products() {
-		return new Route("/products");
+	public static UriComponents products() {
+		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).getProducts())
+				.build();
 	}
 
-	public Route product(int productId) {
-		return new Route("/products/{id}");
+	public static UriComponents product(String id) {
+		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).getProduct(id))
+				.build();
 	}
 
-	static class Route {
-
-		String path;
-
-		Function<Object, HtmlRenderable> renderFunction;
-
-		public Route(String path) {
-			this.path = path;
-		}
-
-		public Route(String path, Function<Object, HtmlRenderable> renderFunction) {
-			this.path = path;
-			this.renderFunction = renderFunction;
-		}
-
-		public String getUrl() {
-			return path;
-		}
+	public static UriComponents editProduct(DemoModel.Product product) {
+		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).editProduct(product.getName()))
+				.build();
 	}
 }

@@ -7,6 +7,13 @@ public abstract class FormInputTag<T extends FormInputTag<T>> extends TagBrush<T
 	 	 return self();
 	 }
 
+	 public T setValue(Object newValue) {
+		 if (newValue != null) {
+			 attributePut("value", newValue);
+		 }
+	 	 return self();
+	 }
+
 	 public T setPlaceholder(String newValue) {
 	 	 attributePut("placeholder", newValue);
 		  return self();

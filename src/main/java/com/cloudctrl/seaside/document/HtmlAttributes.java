@@ -37,7 +37,12 @@ public class HtmlAttributes {
 		 }
 	 }
 
+	 public Object get(String name) {
+	 	 return attribs.get(name);
+	 }
+	 
 	 public void put(String name, Object value) {
 	 	 attribs.put(name, value);
 	 }
+	 
 }

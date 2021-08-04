@@ -109,4 +109,13 @@ public abstract class TagBrush<T extends TagBrush<T>> {
 		  getAttributes().addStyle(aString);
 		  return self();
 	 }
+	 
+	 public String getId() {
+		 return (String) getAttributes().get("id");
+	 }
+
+	 public T setId(String anId) {
+		 getAttributes().put("id", anId);
+		 return self();
+	 }
 }

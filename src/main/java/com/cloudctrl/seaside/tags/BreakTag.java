@@ -2,7 +2,7 @@ package com.cloudctrl.seaside.tags;
 
 import com.cloudctrl.seaside.canvas.Canvas;
 
-public class BreakTag extends TagBrush {
+public class BreakTag extends TagBrush<BreakTag> {
 
 	 public BreakTag() {
 	 	 super();

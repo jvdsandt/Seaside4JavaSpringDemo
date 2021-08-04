@@ -17,8 +17,9 @@ public class DemoPage implements HtmlRenderable {
 		super();
 		this.navbar = new BootstrapNavbar();
 		this.navbar.setBrandName("Seaside");
+		this.navbar.setBrandHref(DemoRouter.home().getPath());
 		this.navbar.setMenuItems(List.of(
-				new MenuItem("Products"),
+				new MenuItem("Products", DemoRouter.products().getPath()),
 				new MenuItem("Second"),
 				new MenuItem("Third")
 		));
