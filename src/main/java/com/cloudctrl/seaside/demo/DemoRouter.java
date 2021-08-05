@@ -17,13 +17,18 @@ public class DemoRouter {
 				.build();
 	}
 
-	public static UriComponents product(String id) {
+	public static UriComponents product(int id) {
 		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).getProduct(id))
 				.build();
 	}
 
 	public static UriComponents editProduct(DemoModel.Product product) {
-		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).editProduct(product.getName()))
+		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).editProduct(product.getId()))
+				.build();
+	}
+
+	public static UriComponents saveProduct() {
+		return MvcUriComponentsBuilder.fromMethodCall(on(SeasideController.class).saveProduct(null))
 				.build();
 	}
 }

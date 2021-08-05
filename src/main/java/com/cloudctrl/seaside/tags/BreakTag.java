@@ -11,12 +11,16 @@ public class BreakTag extends TagBrush<BreakTag> {
 	 @Override
 	 public void setParent(TagBrush parent, Canvas canvas) {
 		  super.setParent(parent, canvas);
-		  setClosed(true);
 		  with(null);
 	 }
 
 	 @Override
 	 public String getTag() {
 		  return "br";
+	 }
+	 
+	 @Override
+	 public boolean isClosed() {
+		 return true;
 	 }
 }

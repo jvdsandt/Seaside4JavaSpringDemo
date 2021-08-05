@@ -33,10 +33,10 @@ public abstract class TagBrush<T extends TagBrush<T>> {
 		 } else if (anObject != null) {
 	 	 	 getDocument().text(anObject.toString());
 		 }
-	 	 if (!closed) {
+	 	 if (!isClosed()) {
 			  closeTag();
-			  closed = true;
 		 }
+	 	 closed = true;
 	 }
 
 	 protected Document getDocument() {
@@ -44,7 +44,7 @@ public abstract class TagBrush<T extends TagBrush<T>> {
 	 }
 
 	 private void openTag() {
-		getDocument().openTag(getTag(), attributes, closed);
+		getDocument().openTag(getTag(), attributes, isClosed());
 	 }
 
 	 private void closeTag() {
@@ -56,12 +56,11 @@ public abstract class TagBrush<T extends TagBrush<T>> {
 		 return (T) this;
 	 }
 
+	 /**
+	  * Answer true if this tag should be closed immediately, such as <br />."
+	  */
 	 public boolean isClosed() {
-	 	 return closed;
-	 }
-
-	 protected void setClosed(boolean b) {
-	 	 this.closed = b;
+	 	 return false;
 	 }
 
 	 public abstract String getTag();

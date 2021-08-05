@@ -31,7 +31,7 @@ public class ProductListPanel implements HtmlRenderable {
 			html.tableData(p.getName());
 			html.tableData(p.getPrice());
 			html.tableData(() -> {
-				html.anchor().setHref(DemoRouter.product(p.getName()).getPath()).with("Details");
+				html.anchor().setHref(DemoRouter.product(p.getId()).getPath()).with("Details");
 			});
 		});
 	}

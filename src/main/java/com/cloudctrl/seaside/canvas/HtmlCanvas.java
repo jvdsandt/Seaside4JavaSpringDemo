@@ -146,6 +146,11 @@ public class HtmlCanvas extends Canvas {
 		tableRow().with(action);
 	}
 
+	public void space() {
+		flush();
+		getDocument().write("&nbsp;");
+	}
+	
 	public GenericTag span() {
 		return tag("span");
 	}
@@ -158,8 +163,8 @@ public class HtmlCanvas extends Canvas {
 		span().with(anObject);
 	}
 
-	public GenericTag form() {
-		return tag("form");
+	public FormTag form() {
+		return tag(FormTag.class);
 	}
 
 	public void form(Runnable anObject) {

@@ -20,9 +20,9 @@ public class DemoModel {
 		return products;
 	}
 
-	public Optional<Product> getProduct(String name) {
+	public Optional<Product> getProduct(int id) {
 		return getProducts().stream()
-				.filter(p -> p.getName().equals(name))
+				.filter(p -> p.getId() == id)
 				.findAny();
 	}
 
@@ -34,7 +34,10 @@ public class DemoModel {
 	}
 
 	public static class Product {
+		
+		private static int id_counter = 1000;
 
+		private int id;
 		private String name;
 		private String description;
 
@@ -42,10 +45,15 @@ public class DemoModel {
 		private int inStock;
 
 		public Product(String name, String description, BigDecimal price, int inStock) {
+			this.id = id_counter++;
 			this.name = name;
 			this.description = description;
 			this.price = price;
 			this.inStock = inStock;
+		}
+
+		public int getId() {
+			return id;
 		}
 
 		public String getName() {

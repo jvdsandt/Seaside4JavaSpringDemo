@@ -16,12 +16,24 @@ public class ProductEditPanel implements HtmlRenderable {
 	public void renderContentOn(HtmlCanvas html) {
 
 		html.heading().setLevel(3).with("Edit product " + product.getName());
-		html.form(() -> {
-			html.render(new BootstrapFormControl("Name:")
-					.setValue(product.getName())
-					.setHelpText("Enter a valid and descriptive name for this product"));
-			html.render(new BootstrapFormControl("Description:").setValue(product.getDescription()));
-		});
+		html.form()
+			.setAction(DemoRouter.saveProduct().getPath())
+			.with(() -> {
+				html.render(new BootstrapFormControl("Name:")
+						.setName("name")
+						.setValue(product.getName())
+						.setHelpText("Enter a valid and descriptive name for this product"));
+				html.render(new BootstrapFormControl("Description:")
+						.setName("description")
+						.setValue(product.getDescription()));
+				
+				html.button().cssClass("btn btn-primary").with("Submit");
+				html.space();
+				html.anchor()
+					.cssClass("btn btn-secondary")
+					.setHref(DemoRouter.product(product.getId()).getPath())
+					.with("Cancel");
+			});
 	}
 
 }

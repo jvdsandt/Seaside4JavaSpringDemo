@@ -20,6 +20,7 @@ public class Canvas {
 		parentBrush = currentBrush;
 		currentBrush = null;
 		action.run();
+		flush();
 		parentBrush = parentBrush.getParent();
 	}
 

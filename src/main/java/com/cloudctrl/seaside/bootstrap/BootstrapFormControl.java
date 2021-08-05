@@ -5,6 +5,7 @@ import com.cloudctrl.seaside.component.HtmlRenderable;
 
 public class BootstrapFormControl implements HtmlRenderable {
 	
+	private String name;
 	private String label;
 	private String helpText;
 	
@@ -35,6 +36,7 @@ public class BootstrapFormControl implements HtmlRenderable {
 				}
 				html.textInput()
 					.setId(html.getLastId())
+					.setName(name)
 					.cssClass("form-control")
 					.setValue(value);
 				if (helpText != null) {
@@ -43,6 +45,15 @@ public class BootstrapFormControl implements HtmlRenderable {
 						.with(helpText);
 				}
 			});
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public BootstrapFormControl setName(String name) {
+		this.name = name;
+		return this;
 	}
 
 	public String getLabel() {
